@@ -1,5 +1,6 @@
-.mainContent {
-  background-color: seagreen;
+.currentWeather {
+  background-color: rgb(209, 209, 209);
+  border-style: solid;
 }
 
 .sideContent {

@@ -1,10 +1,12 @@
-console.log("this is working!!");
-
-// loads any existing localstorage data after components created
-
+//Declare global variables
 var userCitiesArray = [];
 var savedCitiesUl = $(".savedCitiesUl");
 var searchBtnEl = $(".searchBtnEl");
+var currentTimeVar = moment().format("dddd MM-DD-YYYY");
+
+$(".dateToday").text(currentTimeVar);
+
+// APIkey 9755019e33699b27f6c1bafe2406d0ce;
 
 init();
 
@@ -20,21 +22,22 @@ function init() {
   displayCities();
 }
 
+//saves array of cities to local storage
 function saveCities() {
   localStorage.setItem("userCitiesArray", JSON.stringify(userCitiesArray));
 }
 
 function displayCities() {
   userCitiesArray.forEach(function (counter) {
-    var savedCity = $("<li>").attr({
-      class: "list-group-item list-group-item-info",
+    var savedCity = $("<button>").attr({
+      class: "btn btn-info cityBtn",
+      type: "button",
     });
     savedCitiesUl.append(savedCity.text(counter));
   });
 }
 
-//creates <li> for each item in array
-
+//creates <li> for each item in saved array
 searchBtnEl.on("click", function (event) {
   event.preventDefault();
 
@@ -43,58 +46,50 @@ searchBtnEl.on("click", function (event) {
   userCitiesArray.push(newCityValue);
 
   //display new city on list
-  var savedCity = $("<li>").attr({
-    class: "list-group-item list-group-item-info",
+  var savedCity = $("<button>").attr({
+    class: "btn btn-info cityBtn",
+    type: "button",
   });
   savedCitiesUl.append(savedCity.text(newCityValue));
-
   $(".inputCity").val("");
   saveCities();
 });
 
-// creates the visuals for the scheduler body
-// myDay.forEach(function(thisHour) {
-//     // creates timeblocks row
-//     var hourRow = $("<form>").attr({
-//         "class": "row"
-//     });
-//     $(".container").append(hourRow);
+var cityBtnEl = $(".cityBtn");
+savedCitiesUl.on("click", ".cityBtn", displayCurrentWeather);
 
-//     // creates time field
-//     var hourField = $("<div>")
-//         .text(`${thisHour.hour}${thisHour.meridiem}`)
-//         .attr({
-//             "class": "col-md-2 hour"
-//     });
+function displayCurrentWeather() {
+  var cityName = $(this).text();
+  var requestURL =
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    cityName +
+    "&units=imperial&appid=9755019e33699b27f6c1bafe2406d0ce";
 
-//     // creates schdeduler data
-//     var hourPlan = $("<div>")
-//         .attr({
-//             "class": "col-md-9 description p-0"
-//         });
-//     var planData = $("<textarea>");
-//     hourPlan.append(planData);
-//     planData.attr("id", thisHour.id);
-//     if (thisHour.time < moment().format("HH")) {
-//         planData.attr ({
-//             "class": "past",
-//         })
-//     } else if (thisHour.time === moment().format("HH")) {
-//         planData.attr({
-//             "class": "present"
-//         })
-//     } else if (thisHour.time > moment().format("HH")) {
-//         planData.attr({
-//             "class": "future"
-//         })
-//     }
+  $.ajax({
+    url: requestURL,
+    method: "GET",
+  }).then(function (data) {
+    $(".currentWeather").append(
+      `<h3 class="card-title text-dark">${data.city.name}'s current weather: </h3>`
+    );
+    $(".currentWeather").append(
+      `<p class="card-text">Temperature: ${data.list[0].main.temp} degrees Fahrenheight </p>`
+    );
+    $(".currentWeather").append(
+      `<p class="card-text">Wind: ${data.list[0].wind.speed} MPH </p>`
+    );
+    $(".currentWeather").append(
+      `<p class="card-text">Humidity: ${data.list[0].main.humidity} % </p>`
+    );
+    $(".currentWeather").append(`<p class="card-text">UV Index: </p>`);
+  });
 
-//     // creates save button
-//     var saveButton = $("<i class='far fa-save fa-lg'></i>")
-//     var savePlan = $("<button>")
-//         .attr({
-//             "class": "col-md-1 saveBtn"
-//     });
-//     savePlan.append(saveButton);
-//     hourRow.append(hourField, hourPlan, savePlan);
-// })
+  displayForecastWeather();
+
+  function displayForecastWeather() {
+    $.ajax({
+      url: requestURL,
+      method: "GET",
+    }).then(function (data) {});
+  }
+}
