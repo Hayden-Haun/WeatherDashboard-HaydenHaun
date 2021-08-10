@@ -36,8 +36,11 @@
 
     <div class="container-fluid">
       <div class="d-flex justify-content-between">
-        <div class="col-sm-10 currentWeather"></div>
-        <div class="forecastWeather"></div>
+        <div class="col-sm-10 weatherContainer d-flex flex-column">
+          <div class="currentWeather"></div>
+          <div class="forecastWeather row"></div>
+        </div>
+
         <div
           class="
             col-sm-2
@@ -45,6 +48,8 @@
             align-items-start
             justify-content-end
             sideContent
+            ml-2
+            pl-2
           "
         >
           <ul class="list-group savedCitiesUl"></ul>

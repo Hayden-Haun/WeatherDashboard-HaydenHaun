@@ -1,8 +1,4 @@
-.currentWeather {
+.weatherContainer {
   background-color: rgb(209, 209, 209);
   border-style: solid;
-}
-
-.sideContent {
-  background-color: yellow;
 }
