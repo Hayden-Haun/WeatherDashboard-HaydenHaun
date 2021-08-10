@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- LINK BOOTSTRAP -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./Assets/style.css" />
+
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark mb-2">
+      <a class="navbar-brand text-light">Weather Dashboard</a>
+      <div class="dateToday"></div>
+      <form class="form-inline">
+        <input
+          class="form-control mr-sm-2 inputCity"
+          type="search"
+          placeholder="Input city here"
+          aria-label="Search"
+        />
+        <button
+          class="btn btn-outline-info my-2 my-sm-0 searchBtnEl"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between">
+        <div class="col-sm-10 mainContent">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            excepturi alias cum nesciunt nostrum incidunt veritatis recusandae
+            totam id deserunt, consectetur laudantium delectus esse ratione.
+            Assumenda quis vel eligendi nobis modi perspiciatis dignissimos
+            numquam consectetur magni. Esse modi inventore, iste quidem vero ut
+            obcaecati, provident quas ipsa optio debitis accusantium doloremque?
+            Corrupti commodi blanditiis eaque dignissimos veritatis? Modi
+            tempore praesentium quasi fuga dolorum odio nam sint laboriosam
+            alias velit eos ducimus similique consequuntur, voluptates laborum
+            at placeat expedita odit labore.
+          </p>
+        </div>
+        <div
+          class="
+            col-sm-2
+            d-flex
+            align-items-start
+            justify-content-end
+            sideContent
+          "
+        >
+          <ul class="list-group savedCitiesUl"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINK JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- MOMENT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script src="./Assets/script.js"></script>
+  </body>
+</html>
