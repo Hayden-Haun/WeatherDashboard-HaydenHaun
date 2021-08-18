@@ -12,4 +12,6 @@ FEATURES:
 *The UV Index element will change color depending on the severity in that city.
 *The application shows a 5 day forecast. Data presents the forecasted values at 6:00pm each day.
 
+TECHNOLOGIES USED: HTML, CSS, JAVASCRIPT, BOOTSTRAP, jQUERY, MOMENT.js, API DATA
+
 ![SCREENSHOT](./Assets/image.png)
